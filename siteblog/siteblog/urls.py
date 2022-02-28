@@ -20,8 +20,13 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('ckeditor/', include('ckeditor_uploader.urls')), #3
     path('', include('blog.urls')),
 ]
 
 if settings.DEBUG:
+    import debug_toolbar
+    urlpatterns = [
+        path('__debug__/', include(debug_toolbar.urls))
+    ] + urlpatterns #2
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
