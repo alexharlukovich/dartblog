@@ -45,8 +45,13 @@ class Post(models.Model):
     def __str__(self):    #проверить назначение функции деф __str__(селф):
         return self.title
 
+    def get_absolute_url(self):
+        return reverse('post', kwargs={"slug": self.slug})
+
     class Meta:
         verbose_name = 'Пост'
         verbose_name_plural = 'Посты'
         ordering = ['-created_at']
+
+
 
